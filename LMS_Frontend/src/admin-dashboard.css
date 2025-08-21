@@ -1,0 +1,40 @@
+.content {
+    /* background-color: hsl(215, 21%, 11%); */
+    background-color: #252539;
+    padding: 20px;
+}
+
+.status-content {
+    /* background-color: #111e2f; */
+    background-color: #2D2D44;
+    padding: 12px 0;
+}
+
+.overlay{
+    background-color: rgba(0, 0, 0, 0.407);
+    top:0;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.details-text {
+    padding: 2px 8px;
+    font-weight: 600;
+    z-index: 2;
+    border-radius: 8px 8px 0 0;
+    /* background-color: #4caf4f5b; */
+    background: linear-gradient(to top, rgba(7, 55, 18, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    backdrop-filter: blur(4px);
+}
+
+.popular-book {
+    cursor: pointer;
+    transition: all 1.2s ease-in-out;
+}
+
+.popular-book:hover {
+    transform: scale(1.2);
+}
+.popular-book:hover div:nth-child(3)>p:nth-child(2) {
+    color: #08e30f;
+}

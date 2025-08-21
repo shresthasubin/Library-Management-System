@@ -1,0 +1,185 @@
+@import 'tailwindcss';
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+body {
+  /* background-color: #0D1117; */
+  background-color: #1E1E2F;
+}
+/* register form css  */
+.register-contaitner, .signin-container{
+  width: 100vw;
+  height: 100vh;
+  background: url('library.png');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 600px 90px black;
+}
+.register-form, .signin-form{
+  /* border: 2px solid rgb(207, 207, 207); */
+  border-radius: 16px;
+  padding: 12px 24px ;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  backdrop-filter: blur(3px);
+}
+
+label {
+  color: #bcbcbc;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input::placeholder {
+  all: unset;
+  color: #cfcfcf;
+  font-size: 14px;
+}
+
+input {
+  all: unset;
+  color: #d3d3d3;
+  border: 0.5px solid rgb(113, 113, 113);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 400px;
+}
+
+textarea {
+  all: unset;
+  color: #d3d3d3;
+  border: 0.5px solid rgb(113, 113, 113);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 400px;
+}
+
+.register-button, .signin-button {
+  margin-top: 16px;
+  color: white;
+  background-color: green;
+  padding: 8px 0;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+/* register form css ends  */
+
+/* book  */
+.add-book-btn {
+  margin-top: 12px;
+  padding: 4px 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+.add-book-btn:hover {
+  background-color: #4caf4fca;
+}
+
+.book-container {
+  width: 250px;
+  height: 300px;
+  border-radius: 14px;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.book-container:hover {
+  box-shadow: 0 2px 5px rgb(213, 214, 213);
+  transform: scale(1.05);
+}
+.book-image {
+  position: relative;
+  z-index: 3;
+}
+
+.available-text {
+  padding: 1px 4px;
+  background-color: #4caf4fca;
+}
+
+.book-overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 14px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.book-text-container{
+  background: linear-gradient(to top, rgba(7, 55, 18, 0.8) 0%, rgba(1, 255, 56, 0) 100%);
+  backdrop-filter: blur(2px);
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 8px;
+  z-index: 5;
+}
+.book-text-container p{
+  margin-left: 8px;
+}
+
+.book-text-container p:nth-child(3){
+  padding: 1px 4px;
+}
+
+.edit-btn {
+  background-color: #FBBF24;
+  width: 50%;
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dlt-btn {
+  background-color: #DC2626;
+  width: 50%;
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.book-text-container div:last-child {
+  margin-top: 4px;
+}
+
+.search-bar {
+  width: 600px;
+  border-radius: 24px;
+  padding-left: 40px;
+}
+
+.desc-book {
+  font-size: 12px;
+  font-weight: 200;
+  display: none;
+  transition: all 2s ease-in-out;
+}
+
+.popular-book:hover .desc-book {
+  display: block;
+}
+.popular-book {
+  overflow: hidden;
+}
+.details-text {
+  height: 20%;
+  transition: all 2s ease-in-out;
+}
+.popular-book:hover .details-text {
+  height: 100%;
+}

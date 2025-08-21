@@ -1,0 +1,17 @@
+.box-animate-top{
+    animation: upDown 2s ease-in-out 2s infinite alternate-reverse ;
+}
+
+.box-animate-bottom{
+    animation: downUp 2s ease-in-out 2s infinite alternate-reverse ;
+}
+
+@keyframes upDown {
+    0% {transform: translateY(30px)}
+    100% {transform: translateY(210px)}
+}
+
+@keyframes downUp {
+    0% {transform: translateY(120px)}
+    100% {transform: translateY(-70px)}
+}
