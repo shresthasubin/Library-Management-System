@@ -51,6 +51,11 @@ const ReturnBorrow = () => {
                 })
               }
             </tbody>
+            <tbody>
+              {
+                borrowedBook.length === 0 && <p>Borrowed books not found</p>
+              }
+            </tbody>
           </table>
         </div>
       </div>

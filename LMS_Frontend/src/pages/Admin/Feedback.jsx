@@ -38,6 +38,11 @@ const Feedback = () => {
                 })
             }
         </div>
+        <div>
+            {
+                feedbacks.length === 0 && <p>Feedback not found</p>
+            }
+        </div>
       </div>
     </div>
   )

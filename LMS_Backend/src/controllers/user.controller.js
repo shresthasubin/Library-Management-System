@@ -136,6 +136,48 @@ const deleteUser = async(req, res) => {
     }
 }
 
+const toggleDeleteUser = async (req, res) => {
+    try {
+        const {userId} = req.params
+        const user = await User.findById(userId)
+        let updateingUser;
+        if (user.role !== 'librarian') {
+            updateingUser = await User.findByIdAndUpdate(
+                userId,
+                {
+                    isDeleted: !user.isDeleted
+                },
+                {
+                    new: true,
+                    runValidators: true
+                }
+            )
+        } else {
+            return res.status(400).json({
+                success: false,
+                message: 'Librarian cannot be deleted'
+            })
+        }
+
+        if (!updateingUser) {
+            return res.status(400).json({
+                success: false,
+                message: 'User with id doesnot exist'
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'User has been activated'
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Server error: cannot toggle delete'
+        })
+    }
+}
+
 const getAllUser = async(req, res) => {
     try {
         const users = await User.find()
@@ -232,4 +274,4 @@ const logoutUser = async (req, res) => {
     })
 }
 
-export {registerUser, loginUser, deleteUser, getAllUser, updateUser, logoutUser, getUserById}
+export {registerUser, loginUser, deleteUser, getAllUser, updateUser, logoutUser, getUserById, toggleDeleteUser}
