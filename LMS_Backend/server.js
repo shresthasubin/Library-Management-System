@@ -15,7 +15,8 @@ app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static('uploads'))
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin: 'https://lms-frontend-vt4e.vercel.app',
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true
 }))
 
@@ -23,25 +24,25 @@ app.use(cors({
 
 // DB connection status
 dbConnection()
-.then(() => {
-    app.listen(port, () => {
-        console.log(`App is listening at http://localhost:${port}`)
+    .then(() => {
+        app.listen(port, () => {
+            console.log(`App is listening at http://localhost:${port}`)
+        })
+        seedLibrarian()
     })
-    seedLibrarian()
-})
-.catch(err => {
-    console.log('Connection error', err.message)
-    process.exit(1)
-})
+    .catch(err => {
+        console.log('Connection error', err.message)
+        process.exit(1)
+    })
 
-app.use('/api',router)
+app.use('/api', router)
 
-const seedLibrarian = async() => {
+const seedLibrarian = async () => {
     try {
-        const librarian = await User.findOne({email: 'librarian_admin@gmail.com'})
+        const librarian = await User.findOne({ email: 'librarian_admin@gmail.com' })
         if (!librarian) {
             const hashedPassword = await bcrypt.hash('librarian', 10)
-    
+
             await User.create({
                 name: 'Saint Gorden',
                 email: 'librarian_admin@gmail.com',

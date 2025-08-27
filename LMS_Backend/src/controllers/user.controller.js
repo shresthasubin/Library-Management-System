@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 
 const registerUser = async (req, res) => {
     try {
-        const {email, password, name} = req.body
+        const { email, password, name } = req.body
 
         // check if user exist 
         const userExist = await User.findOne({ email: email })
@@ -24,11 +24,11 @@ const registerUser = async (req, res) => {
         const profileImage = req.file?.path
 
         // creating and saving data 
-        const userData = new User({email, password: hashedPassword, role, name, profileImage})
+        const userData = new User({ email, password: hashedPassword, role, name, profileImage })
         await userData.save()
 
         // finding the same data to show user without password 
-        const savedData = await User.findOne({ email: email}).select('-password')
+        const savedData = await User.findOne({ email: email }).select('-password')
 
         return res.status(201).json({
             success: true,
@@ -46,9 +46,9 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-        const {email, password} = req.body
+        const { email, password } = req.body
 
-        const userExist = await User.findOne({email: email}).select('+password +isDeleted')
+        const userExist = await User.findOne({ email: email }).select('+password +isDeleted')
         if (userExist.isDeleted) {
             return res.status(401).json({
                 success: false,
@@ -84,9 +84,9 @@ const loginUser = async (req, res) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            sameSite: 'lax',
+            sameSite: 'None',
             expires: new Date(Date.now() + 3_600_000),
-            secure: process.env.NODE_ENV === 'production'
+            secure: true
         })
 
         return res.status(201).json({
@@ -107,9 +107,9 @@ const loginUser = async (req, res) => {
     }
 }
 
-const deleteUser = async(req, res) => {
+const deleteUser = async (req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
         // const user = await User.findByIdAndDelete(id)
         const user = await User.findById(id)
         if (user.role !== 'librarian') {
@@ -138,7 +138,7 @@ const deleteUser = async(req, res) => {
 
 const toggleDeleteUser = async (req, res) => {
     try {
-        const {userId} = req.params
+        const { userId } = req.params
         const user = await User.findById(userId)
         let updateingUser;
         if (user.role !== 'librarian') {
@@ -178,7 +178,7 @@ const toggleDeleteUser = async (req, res) => {
     }
 }
 
-const getAllUser = async(req, res) => {
+const getAllUser = async (req, res) => {
     try {
         const users = await User.find()
         return res.status(200).json({
@@ -221,26 +221,26 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
         const user = req.body
-        const {id} = req.params
+        const { id } = req.params
 
         if (user.password) {
             user.password = await bcrypt.hash(user.password, 10)
         }
         const profileImage = req.file?.path
         const updatedUser = await User.findByIdAndUpdate(
-            id, 
+            id,
             {
-                ...user, 
+                ...user,
                 role: req.user.role === 'librarian' ? 'librarian' : 'borrower',
                 profileImage: profileImage
-            }, 
+            },
             {
                 new: true,
                 runValidators: true
             }
         )
 
-        if (! updatedUser) {
+        if (!updatedUser) {
             return res.status(404).json({
                 success: false,
                 message: 'User with id not found'
@@ -267,11 +267,11 @@ const logoutUser = async (req, res) => {
         secure: true
     }
     return res.status(200)
-    .clearCookie('token', options)
-    .json({
-        success: true,
-        message: 'User logged out successful',
-    })
+        .clearCookie('token', options)
+        .json({
+            success: true,
+            message: 'User logged out successful',
+        })
 }
 
-export {registerUser, loginUser, deleteUser, getAllUser, updateUser, logoutUser, getUserById, toggleDeleteUser}
+export { registerUser, loginUser, deleteUser, getAllUser, updateUser, logoutUser, getUserById, toggleDeleteUser }
