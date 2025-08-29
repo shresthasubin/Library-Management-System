@@ -69,13 +69,13 @@ const BorrowedBook = () => {
             .map(book => {
               return <div key={book._id} className='w-full bg-[#0f172acc] rounded-[14px] flex gap-[14px]'>
                 <img src={`http://localhost:3000/${book.book.bookImage}`} alt="book image" style={{borderRadius: '14px 0 0 14px'}} className='h-[250px] w-[180px]'/>
-                <div className='flex flex-col gap-[3px]' style={{marginRight: '12px', marginBottom: '8px'}}>
+                <div className='w-full flex flex-col gap-[3px]' style={{marginRight: '12px', marginBottom: '8px'}}>
                   <p><span className='text-lg font-bold'>Title:</span> <span className='text-xl font-bold'>{book.book.title}</span></p>
                   <p><span className='text-lg font-bold '>Author:</span> <span className='italic text-green-400'>{book.book.author}</span></p>
                   <p><span className='text-lg font-bold'>Description:</span> <span className='text-[14px] text-gray-300'>{book.book.description}</span></p>
                   <p><span className='text-[12px] font-bold'>Borrowed Date:</span> <span className='text-[12px] font-bold'>{new Date(book.borrowDate).toLocaleString()}</span></p>
                   <p><span className='text-[12px] font-bold'>Due Date:</span> <span className={`text-[12px] font-bold ${book.dueDate === new Date()? 'text-red-400':'text-green-400'}`}>{new Date(book.dueDate).toLocaleString()}</span></p>
-                  <div className='self-end w-[410px] flex justify-between'>
+                  <div className='self-end w-[410px] self-end flex justify-between'>
                     <button type='button' onClick={() => handleReturn(book._id)} className='bg-red-600 w-[200px] ' style={{padding: '4px 16px', borderRadius: '24px', cursor: 'pointer'}}>Return</button>
                     <button type='button' onClick={() => handleRenew(book._id)} className='bg-green-600 w-[200px] ' style={{padding: '4px 16px', borderRadius: '24px', cursor: 'pointer'}}>Renew</button>
 

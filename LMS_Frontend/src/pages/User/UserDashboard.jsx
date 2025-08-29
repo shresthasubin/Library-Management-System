@@ -84,7 +84,12 @@ const UserDashboard = () => {
                         <p className='text-[13px] font-[500] w-fit text-white bg-[#4CAF50] rounded-md'>Available: {book.available}/{book.quantity}</p>
                         <p className='text-[13px] font-[600] w-[40px] text-white bg-[#FFD60A] rounded-md flex gap-[4px] items-center justify-center'><FaStar/>{book.rating}</p>
                         <div className='w-full flex justify-center'>
-                          <button type='button' className='w-[230px] h-[32px] bg-[#4CAF50] hover:bg-[#43a047] rounded-[24px]' onClick={() => handleBorrowBook(book._id)}>Borrow</button>
+                          {
+                            Number(book.available) > 0 ?
+                            <button type='button' className='w-[230px] h-[32px] bg-[#4CAF50] hover:bg-[#43a047] rounded-[24px]' onClick={() => handleBorrowBook(book._id)}>Borrow</button>
+                            :
+                            <button type='button' className='w-[230px] h-[32px] bg-[#D3D3D3] hover:bg-[#808080] rounded-[24px]' onClick={() => handleBorrowBook(book._id)} disabled={true}>Out Of Stock</button>
+                          }
                         </div>
                       </div>
                     </div>
