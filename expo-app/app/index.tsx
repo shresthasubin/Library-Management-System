@@ -33,7 +33,7 @@ import { StyleSheet } from "react-native";
 const index = () => {
   return (
     <>
-      <Redirect href={"/(drawer)/(tabs)/profile"}/>
+      <Redirect href={"/(drawer)/register"}/>
     </>
   )
 }
