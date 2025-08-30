@@ -7,7 +7,11 @@ import bcrypt from 'bcryptjs'
 import User from './src/models/user.model.js'
 import cors from 'cors'
 
-dotenv.config()
+dotenv.config(
+    {
+        path: './.env'
+    }
+)
 
 const port = process.env.PORT || 3000
 const app = express()
@@ -15,7 +19,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static('uploads'))
 app.use(cors({
-    origin: 'https://lms-frontend-vt4e.vercel.app',
+    origin: ['https://lms-frontend-vt4e.vercel.app', 'http://localhost:5173', 'exp://192.168.100.7:8081', 'http://localhost:8081'],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true
 }))
