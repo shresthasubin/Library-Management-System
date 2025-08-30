@@ -124,7 +124,7 @@ const login = () => {
                 )
             }
         </Pressable>
-        <Text className='text-[#f1f1f1] underline self-center mt-[12px]' onPress={handleNavigate}>Already have an account? <Text className='font-bold'>Sign In</Text></Text>
+        <Text className='text-[#f1f1f1] underline self-center mt-[12px]' onPress={handleNavigate}>Already have an account? <Text className='font-bold'>Register</Text></Text>
       </View>
     </View>
   )
