@@ -20,7 +20,7 @@ const login = () => {
     })
     const router = useRouter()
     const handleNavigate = () => {
-        router.push('/(drawer)/login')
+        router.push('/(drawer)/register')
     }
 
    const handleSubmit = async () => {
